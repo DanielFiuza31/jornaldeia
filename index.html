@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f5f5f2" />
+  <meta name="description" content="Estado da Arte I. A. — novidades, criações e ideias de inteligência artificial, todos os dias." />
+  <title>Estado da Arte I. A. — inteligência artificial, em movimento</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f5f2;
+      --ink: #191a18;
+      --muted: #72736f;
+      --line: #deded8;
+      --card: #fff;
+      --accent: #bd4a3b;
+      --lavender: #e5e0ed;
+      --peach: #f0ddd7;
+      --blue: #dce4eb;
+      --serif: Iowan Old Style, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    .shell { max-width: 1280px; margin: auto; padding: 0 42px; }
+    .topbar { border-bottom: 1px solid var(--line); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 9px; font-size: 17px; font-weight: 750; letter-spacing: -.7px; white-space: nowrap; }
+    .brand-mark { position: relative; flex: 0 0 34px; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px 10px 10px 3px; background: var(--ink); color: #f7f5f0; font: 700 13px/1 var(--serif); letter-spacing: -1px; }
+    .brand-mark::after { content: ""; position: absolute; width: 6px; height: 6px; right: -2px; top: -2px; border: 2px solid var(--paper); border-radius: 50%; background: var(--accent); }
+    .nav-links { display: flex; gap: 30px; color: #565752; font-size: 13px; }
+    .nav-links a:hover, .footer a:hover { color: #000; }
+    .nav-action { border: 1px solid var(--ink); border-radius: 99px; padding: 10px 16px; background: transparent; font-size: 12px; font-weight: 650; cursor: pointer; transition: .2s ease; }
+    .nav-action:hover { background: var(--ink); color: white; }
+    .eyebrow { display: flex; align-items: center; gap: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.25px; font-size: 10px; font-weight: 700; }
+    .live-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 4px #bd4a3b1c; }
+    .hero { padding: 43px 0 37px; }
+    .hero-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
+    .date-line { color: var(--muted); font-size: 12px; }
+    .hero-grid { display: block; max-width: 930px; }
+    h1 { max-width: 930px; margin: 0; font-size: clamp(49px, 7.4vw, 92px); line-height: .98; letter-spacing: -.075em; font-weight: 650; }
+    h1 .serif { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -.065em; }
+    .hero-aside { max-width: 650px; margin-top: 18px; }
+    .hero-aside p { max-width: 610px; margin: 0 0 15px; color: #575852; font-size: 16px; line-height: 1.55; letter-spacing: -.2px; }
+    .text-link { display: inline-flex; gap: 8px; align-items: center; font-size: 12px; font-weight: 700; }
+    .text-link span { transition: transform .2s; }
+    .text-link:hover span { transform: translateX(4px); }
+    .demo-banner { margin-top: 31px; border: 1px solid #e6d5d1; border-radius: 10px; background: #f4e9e5; padding: 11px 14px; color: #75493f; font-size: 11px; }
+    .main-feature { display: grid; grid-template-columns: 1.07fr .93fr; min-height: 350px; overflow: hidden; border-radius: 18px; background: #20211f; color: white; }
+    .feature-copy { padding: 38px 43px; display: flex; flex-direction: column; align-items: flex-start; }
+    .feature-copy .eyebrow { color: #d0cbc1; }
+    .tag { display: inline-flex; padding: 7px 10px; border-radius: 99px; background: #ffffff16; color: white; font-size: 10px; font-weight: 650; }
+    .feature-copy h2 { max-width: 520px; margin: auto 0 14px; font-family: var(--serif); font-size: clamp(31px, 3.6vw, 45px); line-height: 1.06; font-weight: 400; letter-spacing: -1.2px; }
+    .feature-copy p { max-width: 420px; margin: 0 0 23px; color: #c8c9c4; font-size: 13px; line-height: 1.55; }
+    .feature-link { border-bottom: 1px solid #7e807a; padding-bottom: 5px; font-size: 11px; font-weight: 650; }
+    .feature-art { position: relative; overflow: hidden; min-height: 300px; display: grid; place-items: center; background-color: #d8d3e2; }
+    .feature-art.tile-0 { background-position: 0 0; }
+    .feature-art.tile-1 { background-position: 33.333% 0; }
+    .feature-art.tile-2 { background-position: 66.666% 0; }
+    .feature-art.tile-3 { background-position: 100% 0; }
+    .feature-art.tile-4 { background-position: 0 100%; }
+    .feature-art.tile-5 { background-position: 33.333% 100%; }
+    .feature-art.tile-6 { background-position: 66.666% 100%; }
+    .feature-art.tile-7 { background-position: 100% 100%; }
+    
+    .art-caption { position: absolute; right: 18px; bottom: 18px; border: 1px solid #ffffff66; border-radius: 99px; background: #171714a8; padding: 8px 10px; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .7px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin: 63px 0 24px; }
+    .section-head h2 { margin: 0; font-size: 31px; letter-spacing: -1.5px; font-weight: 620; }
+    .section-head p { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+    .period-switch { display: flex; gap: 3px; padding: 4px; border-radius: 99px; background: #e9e9e5; }
+    .period-switch button { border: 0; border-radius: 99px; padding: 9px 15px; background: transparent; color: #74756e; font-size: 11px; cursor: pointer; }
+    .period-switch button[aria-pressed="true"] { background: white; color: var(--ink); box-shadow: 0 1px 4px #00000012; }
+    .filter-row { display: flex; align-items: center; gap: 8px; margin-bottom: 22px; overflow-x: auto; scrollbar-width: none; }
+    .filter-row::-webkit-scrollbar { display: none; }
+    .filter { flex: 0 0 auto; border: 1px solid var(--line); border-radius: 99px; padding: 9px 13px; background: transparent; color: #62635e; font-size: 11px; cursor: pointer; transition: .15s; }
+    .filter:hover, .filter.active { border-color: var(--ink); background: var(--ink); color: white; }
+    .search { position: relative; margin-left: auto; min-width: 205px; }
+    .search input { width: 100%; border: 1px solid var(--line); border-radius: 99px; padding: 10px 14px 10px 34px; background: transparent; outline: none; font-size: 11px; }
+    .search input:focus { border-color: #777; }
+    .search::before { content: "⌕"; position: absolute; left: 13px; top: 5px; color: #7b7c75; font-size: 18px; }
+    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .story { min-height: 306px; display: flex; flex-direction: column; overflow: hidden; border: 1px solid #e5e5df; border-radius: 15px; background: var(--card); transition: transform .2s, box-shadow .2s; }
+    .story:hover { transform: translateY(-3px); box-shadow: 0 12px 30px #1617110b; }
+    .story-visual { min-height: 164px; display: grid; place-items: center; overflow: hidden; position: relative; }
+    .story-visual.one { background: var(--lavender); }
+    .story-visual.two { background: var(--peach); }
+    .story-visual.three { background: var(--blue); }
+    .story-visual.four { background: #dce4eb; }
+    .story-visual.five { background: #eee5d8; }
+    .story-visual.six { background: #e8dce0; }
+    .story-visual.tile-0 { background-position: 0 0; }
+    .story-visual.tile-1 { background-position: 33.333% 0; }
+    .story-visual.tile-2 { background-position: 66.666% 0; }
+    .story-visual.tile-3 { background-position: 100% 0; }
+    .story-visual.tile-4 { background-position: 0 100%; }
+    .story-visual.tile-5 { background-position: 33.333% 100%; }
+    .story-visual.tile-6 { background-position: 66.666% 100%; }
+    .story-visual.tile-7 { background-position: 100% 100%; }
+    .visual-label { position: absolute; right: 13px; bottom: 12px; border-radius: 99px; background: #fffdf0dc; padding: 6px 8px; color: #34332f; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; }
+    .translation-badge { border: 1px solid #d9d2df; border-radius: 99px; padding: 4px 6px; color: #655874; font-size: 8px; font-weight: 700; letter-spacing: .25px; white-space: nowrap; }
+    .original-copy { margin: -4px 0 14px; color: #777870; font-size: 10px; line-height: 1.5; }
+    .original-copy summary { width: fit-content; cursor: pointer; color: #66675f; }
+    .original-copy p { margin: 7px 0 0; }
+    .repo-identifier { margin: -3px 0 9px; color: #777870; font-size: 10px; letter-spacing: .1px; }
+    .story-body { padding: 19px 19px 16px; flex: 1; display: flex; flex-direction: column; }
+    .story-meta { display: flex; justify-content: space-between; align-items: center; color: #7c7d76; font-size: 9px; text-transform: uppercase; letter-spacing: .65px; }
+    .story-meta .category { color: #55564f; font-weight: 750; }
+    .story h3 { margin: 15px 0 8px; font-size: 19px; line-height: 1.14; letter-spacing: -.65px; font-weight: 620; }
+    .story p { margin: 0 0 17px; color: #777870; font-size: 11px; line-height: 1.55; }
+    .story-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; color: #8a8b85; font-size: 10px; }
+    .save { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; font-size: 14px; cursor: pointer; }
+    .save[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: white; }
+    .empty { grid-column: 1 / -1; display: none; border: 1px dashed var(--line); border-radius: 14px; padding: 36px; color: var(--muted); text-align: center; font-size: 13px; }
+    .weekly { margin: 70px 0 0; display: grid; grid-template-columns: .75fr 1.25fr; border-radius: 18px; overflow: hidden; background: #c8c0dd; }
+    .weekly-intro { padding: 34px; }
+    .weekly-intro .eyebrow { color: #514a67; }
+    .weekly-intro h2 { max-width: 320px; margin: 24px 0 12px; font-family: var(--serif); font-weight: 400; font-size: 38px; line-height: 1; letter-spacing: -1.3px; }
+    .weekly-intro p { max-width: 320px; margin: 0; color: #504b60; font-size: 12px; line-height: 1.6; }
+    .weekly-list { padding: 24px 31px; background: #e1dced; }
+    .weekly-item { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 12px; min-height: 69px; border-bottom: 1px solid #9389aa55; }
+    .weekly-item:last-child { border-bottom: 0; }
+    .weekly-num { color: #665e7b; font-family: var(--serif); font-size: 19px; }
+    .weekly-item strong { display: block; font-size: 13px; font-weight: 630; }
+    .weekly-item span { color: #6f687f; font-size: 10px; }
+    .weekly-arrow { font-size: 17px; }
+    .newsletter { margin: 75px 0; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 35px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .newsletter h2 { margin: 0 0 8px; font-size: 24px; letter-spacing: -1px; }
+    .newsletter p { margin: 0; color: var(--muted); font-size: 12px; }
+    .signup { display: flex; gap: 7px; width: min(100%, 390px); }
+    .signup input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 99px; padding: 13px 16px; background: white; outline: none; font-size: 11px; }
+    .signup input:focus { border-color: #777; }
+    .signup button { border: 0; border-radius: 99px; padding: 0 18px; background: var(--ink); color: white; font-size: 11px; font-weight: 650; cursor: pointer; }
+    .footer { border-top: 1px solid var(--line); padding: 22px 0 35px; display: flex; justify-content: space-between; gap: 18px; color: var(--muted); font-size: 10px; }
+    .footer-links { display: flex; gap: 19px; }
+    .toast { position: fixed; z-index: 5; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; border-radius: 99px; padding: 12px 18px; background: #20211f; color: white; font-size: 12px; transition: .2s ease; box-shadow: 0 8px 30px #0002; }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+    .source-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 24px; }
+    .source-link { min-height: 74px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--line); border-radius: 12px; background: white; padding: 14px; transition: transform .18s, border-color .18s; }
+    .source-link:hover { transform: translateY(-2px); border-color: #817789; }
+    .source-link strong { font-size: 12px; font-weight: 650; }
+    .source-link span { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: .65px; }
+    .region-select { flex: 0 0 auto; border: 1px solid var(--line); border-radius: 99px; padding: 10px 13px; background: transparent; color: #55504e; font-size: 11px; outline: none; }
+    .feed-message { grid-column: 1 / -1; border: 1px dashed var(--line); border-radius: 14px; padding: 36px; color: var(--muted); text-align: center; font-size: 13px; }
+    .mobile-menu { display: none; }
+    @media (max-width: 800px) {
+      .source-grid { grid-template-columns: repeat(2, 1fr); }
+      .shell { padding: 0 22px; }
+      .nav { min-height: 67px; }
+      .nav-links { gap: 16px; }
+      .hero-grid { max-width: 760px; }
+      .hero-aside { max-width: 480px; }
+      .main-feature { grid-template-columns: 1fr .8fr; min-height: 330px; }
+      .feature-copy { padding: 28px; }
+      .story-grid { grid-template-columns: repeat(2, 1fr); }
+      .weekly { grid-template-columns: 1fr 1.2fr; }
+    }
+    @media (max-width: 560px) {
+      .source-grid { grid-template-columns: 1fr 1fr; }
+      .region-select { min-width: 135px; }
+      .shell { padding: 0 17px; }
+      .nav-links { display: none; }
+      .nav-action { padding: 9px 12px; }
+      .hero { padding-top: 31px; }
+      .hero-top { align-items: flex-start; flex-direction: column; gap: 12px; }
+      h1 { font-size: clamp(44px, 12.7vw, 66px); }
+      .hero-aside { margin-top: 16px; }
+      .hero-aside p { font-size: 14px; }
+      .main-feature { grid-template-columns: 1fr; }
+      .feature-copy { min-height: 300px; padding: 26px; }
+      .feature-art { min-height: 220px; }
+      .section-head { margin-top: 48px; align-items: flex-start; flex-direction: column; }
+      .section-head h2 { font-size: 27px; }
+      .filters-wrap { margin-right: -17px; }
+      .filter-row { padding-right: 17px; flex-wrap: nowrap; }
+      .search { min-width: 155px; }
+      .story-grid { grid-template-columns: 1fr; gap: 11px; }
+      .story { min-height: unset; display: grid; grid-template-columns: 105px 1fr; }
+      .story-visual { min-height: 100%; }
+      .story-body { padding: 14px; }
+      .story h3 { margin-top: 10px; font-size: 16px; }
+      .story p { font-size: 10px; margin-bottom: 11px; }
+      .story-meta { font-size: 8px; }
+      .weekly { grid-template-columns: 1fr; margin-top: 52px; }
+      .weekly-intro { padding: 27px; }
+      .weekly-intro h2 { margin-top: 19px; font-size: 34px; }
+      .weekly-list { padding: 10px 21px; }
+      .newsletter { margin: 55px 0; padding: 28px 0; align-items: flex-start; flex-direction: column; }
+      .signup { width: 100%; }
+      .footer { flex-direction: column; }
+      .footer-links { flex-wrap: wrap; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+
+    /* Direção editorial: uma primeira página de jornal com ritmo e presença. */
+    :root {
+      --paper: #f2efe8;
+      --ink: #171816;
+      --muted: #77746e;
+      --line: #d9d4ca;
+      --card: #fbf9f4;
+      --accent: #c3543b;
+      --lavender: #dfd8e5;
+      --peach: #ead8cc;
+      --blue: #d6e0e6;
+    }
+    body { background: var(--paper); }
+    .shell { max-width: 1440px; padding-left: 54px; padding-right: 54px; }
+    .topbar { position: sticky; top: 0; z-index: 10; background: #f2efe8ed; backdrop-filter: blur(16px); border-color: #d9d4ca; }
+    .nav { min-height: 78px; }
+    .brand { gap: 11px; font-size: 15px; letter-spacing: -.45px; }
+    .brand-mark { width: 37px; height: 37px; flex-basis: 37px; border-radius: 50%; background: var(--ink); font-size: 12px; }
+    .brand-mark::after { width: 7px; height: 7px; right: 0; top: 1px; background: var(--accent); }
+    .nav-links { gap: 27px; font-size: 12px; }
+    .nav-links a { position: relative; padding: 8px 0; }
+    .nav-links a::after { position: absolute; right: 0; bottom: 2px; left: 0; height: 1px; content: ""; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .22s ease; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-action { border-color: #aaa49a; padding: 11px 16px; }
+    .nav-action:hover { background: var(--accent); border-color: var(--accent); }
+    .hero { padding: 48px 0 32px; }
+    .hero-top { margin-bottom: 22px; }
+    .eyebrow { font-size: 10px; letter-spacing: 1.5px; }
+    .live-dot { background: var(--accent); box-shadow: 0 0 0 4px #c3543b1c; }
+    h1 { max-width: 1000px; font-size: clamp(58px, 8vw, 106px); line-height: .91; letter-spacing: -.082em; }
+    h1 .serif { color: var(--accent); letter-spacing: -.075em; }
+    .hero-aside { margin-top: 20px; max-width: 650px; }
+    .hero-aside p { font-size: 16px; line-height: 1.65; }
+    .text-link { border-bottom: 1px solid #c3bdb2; padding-bottom: 5px; }
+    .demo-banner { margin-top: 26px; border: 0; border-left: 2px solid var(--accent); border-radius: 0; background: #e9e3d9; padding: 13px 16px; color: #625d55; }
+    .edition-ticker { overflow: hidden; display: flex; align-items: center; height: 48px; margin: 2px 0 27px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: #716c64; }
+    .ticker-track { display: flex; width: max-content; align-items: center; gap: 29px; animation: ticker-drift 36s linear infinite; white-space: nowrap; }
+    .ticker-track span { font-size: 10px; font-weight: 700; letter-spacing: 1.45px; text-transform: uppercase; }
+    .ticker-track i { color: var(--accent); font-style: normal; font-size: 14px; }
+    @keyframes ticker-drift { to { transform: translateX(-50%); } }
+    .edition-ticker:hover .ticker-track { animation-play-state: paused; }
+    .main-feature { grid-template-columns: .9fr 1.1fr; min-height: 0; border-radius: 3px; background: #191a18; box-shadow: 0 24px 60px #33291d16; }
+    .main-feature { cursor: pointer; }
+    .feature-copy { min-height: 340px; padding: 39px 42px; }
+    .feature-copy .eyebrow { color: #d5cfc4; }
+    .feature-copy .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+    .feature-copy h2 { margin-top: auto; font-size: clamp(34px, 4vw, 53px); letter-spacing: -1.8px; }
+    .feature-copy p { max-width: 430px; font-size: 14px; line-height: 1.7; }
+    .feature-link { border-color: #a89e91; font-size: 12px; }
+    .feature-link:hover { color: #f2b09a; border-color: #f2b09a; }
+    .feature-art { min-height: 0; height: auto; aspect-ratio: auto; align-self: stretch; }
+    .feature-art::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, #12131020, transparent 35%), linear-gradient(0deg, #10110f75, transparent 42%); pointer-events: none; }
+    .art-caption { z-index: 1; right: 22px; bottom: 21px; border: 1px solid #ffffff55; border-radius: 2px; background: #171714a8; padding: 9px 11px; letter-spacing: 1px; }
+    .section-head { margin: 76px 0 24px; }
+    .section-head h2 { font-family: var(--serif); font-size: 42px; font-weight: 400; letter-spacing: -1.7px; }
+    .section-head p { font-size: 12px; }
+    .period-switch { border-radius: 3px; background: #e5dfd5; }
+    .period-switch button { border-radius: 2px; }
+    .period-switch button[aria-pressed="true"] { background: var(--ink); color: #fff; box-shadow: none; }
+    .filter-row { gap: 7px; margin-bottom: 28px; }
+    .filter { border-radius: 2px; border-color: #d0cabf; padding: 10px 13px; }
+    .filter:hover, .filter.active { border-color: var(--accent); background: var(--accent); }
+    .region-select { border-radius: 2px; background-color: var(--paper); }
+    .search input { border-radius: 2px; background: #f8f6f1; }
+    .search input:focus { border-color: var(--accent); }
+    .story-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 38px 22px; }
+    .story { min-height: 0; overflow: visible; border: 0; border-radius: 0; background: transparent; }
+    .story { cursor: pointer; }
+    .story:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+    .story:hover { transform: none; box-shadow: none; }
+    .story-visual { min-height: 0; aspect-ratio: 1.72 / 1; background-size: 400% 200%; }
+    .story:hover .story-visual { filter: saturate(1.08); }
+    .visual-label { right: 11px; bottom: 10px; border-radius: 2px; background: #f5f0e7e8; padding: 7px 9px; }
+    .story-body { padding: 16px 0 0; }
+    .story-meta { font-size: 9px; }
+    .story h3 { margin: 13px 0 9px; font-family: var(--serif); font-size: 24px; line-height: 1.08; letter-spacing: -.65px; font-weight: 500; }
+    .story p { color: #6d6962; font-size: 12px; line-height: 1.65; }
+    .story-body > p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+    .story-bottom { border-top: 1px solid var(--line); padding-top: 12px; font-size: 10px; }
+    .story-bottom .read-summary { color: var(--accent); font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .save { border-radius: 2px; }
+    .save[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); }
+    .story:first-child { grid-column: span 2; display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; align-items: stretch; }
+    .story:first-child .story-visual { height: 100%; min-height: 255px; aspect-ratio: auto; }
+    .story:first-child .story-body { padding: 10px 4px 0 0; }
+    .story:first-child h3 { margin-top: 19px; font-size: clamp(27px, 3vw, 39px); }
+    .story:first-child p { font-size: 13px; }
+    .weekly { grid-template-columns: .78fr 1.22fr; margin-top: 86px; border-radius: 2px; background: #c3543b; }
+    .weekly-intro { padding: 39px; color: #fffaf2; }
+    .weekly-intro .eyebrow { color: #f4c5b6; }
+    .weekly-intro h2 { font-size: 43px; line-height: .98; }
+    .weekly-intro p { color: #f0d8cf; font-size: 13px; }
+    .weekly-intro .text-link { border-color: #f0b9a8; margin-top: 20px; }
+    .weekly-list { padding: 25px 34px; background: #e9e2d7; }
+    .weekly-item { border-color: #cfc5b8; min-height: 74px; }
+    .weekly-num { color: var(--accent); }
+    .weekly-item span { color: #736e66; }
+    .source-link { min-height: 82px; border-color: #d6d0c5; border-radius: 2px; background: #f8f6f0; padding: 16px; }
+    .source-link:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .feed-message { border-radius: 2px; }
+    .footer { padding-top: 26px; border-color: var(--line); }
+    .toast { border-radius: 2px; background: var(--accent); }
+    .feature-art, .story-visual { background-image: none !important; background-color: #ddd7cd; }
+    .feature-art { overflow: hidden; }
+    .story-visual { display: block; position: relative; overflow: hidden; aspect-ratio: 16 / 10; }
+    .story-image, .feature-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .story-visual:not(.has-image) { display: grid; place-items: center; background: #e6e0d6; }
+    .feature-art:not(.has-image) { display: grid; place-items: center; background: #d9d2c7; }
+    .no-image-note { padding: 18px; color: #716a60; font: 400 17px/1.25 var(--serif); text-align: center; }
+    .feature-art .no-image-note { max-width: 260px; color: #514a41; font-size: 25px; }
+    .story-visual img, .feature-art img { transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+    .story:hover .story-image { transform: scale(1.025); }
+    .feature-art .art-caption { pointer-events: none; }
+    .story-visual.has-fallback, .feature-art.has-fallback { display:block; }
+    @media (max-width: 800px) {
+      .shell { padding-left: 24px; padding-right: 24px; }
+      .main-feature { grid-template-columns: 1fr .95fr; }
+      .feature-copy { padding: 30px; }
+      .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .story:first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 560px) {
+      .shell { padding-left: 17px; padding-right: 17px; }
+      .nav { min-height: 66px; }
+      .brand { font-size: 13px; gap: 8px; }
+      .brand-mark { width: 32px; height: 32px; flex-basis: 32px; }
+      .nav-action { padding: 9px 11px; font-size: 10px; }
+      .hero { padding-top: 31px; }
+      .hero-top { align-items: flex-start; flex-direction: row; gap: 8px; }
+      .hero-top .eyebrow { max-width: 60%; font-size: 8px; }
+      .date-line { text-align: right; font-size: 10px; }
+      h1 { font-size: clamp(48px, 13vw, 68px); }
+      .hero-aside p { font-size: 14px; }
+      .edition-ticker { height: 40px; margin-bottom: 20px; }
+      .ticker-track { gap: 19px; }
+      .ticker-track span { font-size: 8px; }
+      .main-feature { grid-template-columns: 1fr; }
+      .feature-copy { min-height: 275px; padding: 25px; }
+      .feature-copy h2 { font-size: 36px; }
+      .feature-art { min-height: 0; aspect-ratio: 1.65 / 1; }
+      .section-head { margin-top: 54px; }
+      .section-head h2 { font-size: 34px; }
+      .story-grid { grid-template-columns: 1fr; gap: 31px; }
+      .story { display: block; }
+      .story:first-child { grid-column: auto; display: block; }
+      .story-visual { width: 100%; height: auto; min-height: 0; aspect-ratio: 1.72 / 1; }
+      .story-body { padding: 14px 0 0; }
+      .story:first-child .story-visual { min-height: 0; height: auto; aspect-ratio: 1.72 / 1; }
+      .story:first-child .story-body { padding: 14px 0 0; }
+      .story:first-child h3 { margin-top: 13px; font-size: 27px; }
+      .story h3 { font-size: 23px; }
+      .weekly { grid-template-columns: 1fr; margin-top: 58px; }
+      .weekly-intro { padding: 28px; }
+      .weekly-intro h2 { font-size: 37px; }
+      .weekly-list { padding: 11px 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+  </style>
+  <link rel="stylesheet" href="./assets/news-art.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="Estado da Arte I. A., início"><span class="brand-mark" aria-hidden="true">EA</span> Estado da Arte <span style="font-weight:450">I. A.</span></a>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#hoje">Hoje</a><a href="#semana">Semana</a><a href="#github">GitHub</a><a href="#fontes">Fontes</a>
+      </nav>
+      <button class="nav-action" type="button" id="refresh-feed">Atualizar agora ↻</button>
+    </div>
+  </header>
+  <main id="top" class="shell">
+    <section class="hero" aria-labelledby="headline">
+      <div class="hero-top"><div class="eyebrow"><span class="live-dot"></span> Radar global de inteligência artificial</div><div class="date-line" id="today-date"></div></div>
+      <div class="hero-grid">
+        <h1 id="headline">O futuro da IA<br /><span class="serif">está em pauta.</span></h1>
+        <div class="hero-aside">
+          <p>Um jornal diário sobre o que muda no Brasil e no mundo: descobertas, ferramentas e criações de inteligência artificial, sempre com contexto e fonte original.</p>
+          <a class="text-link" href="#hoje">Acompanhar as notícias <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+      <div class="demo-banner" id="feed-status" role="status" aria-live="polite"><strong>Conectando às fontes…</strong> Preparando as notícias mais recentes.</div>
+    </section>
+
+    <div class="edition-ticker" aria-label="Temas acompanhados pelo jornal"><div class="ticker-track" aria-hidden="true">
+      <span>Pesquisa</span><i>✳</i><span>Novas ferramentas</span><i>✳</i><span>Código aberto</span><i>✳</i><span>Criações</span><i>✳</i><span>Negócios</span><i>✳</i><span>Política e sociedade</span><i>✳</i>
+      <span>Pesquisa</span><i>✳</i><span>Novas ferramentas</span><i>✳</i><span>Código aberto</span><i>✳</i><span>Criações</span><i>✳</i><span>Negócios</span><i>✳</i><span>Política e sociedade</span><i>✳</i>
+    </div></div>
+
+    <section class="main-feature" aria-label="Notícia em destaque">
+      <div class="feature-copy">
+        <span class="eyebrow" id="feature-kicker">DESTAQUE · INTELIGÊNCIA ARTIFICIAL</span>
+        <h2 id="feature-title">O que merece atenção hoje.</h2>
+        <p id="feature-summary">Uma leitura rápida das mudanças mais relevantes em inteligência artificial.</p>
+        <a class="feature-link" id="feature-link" href="#hoje">Ler resumo e acessar a fonte <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="feature-art" id="feature-art" aria-label="Imagem da notícia em destaque"><span class="art-caption" id="feature-caption">LEITURA EM DESTAQUE</span></div>
+    </section>
+
+    <section id="hoje" aria-labelledby="stories-title">
+      <div class="section-head">
+        <div><div class="eyebrow">LEITURA RÁPIDA · COM FONTE</div><h2 id="stories-title">Últimas notícias</h2><p id="last-updated">Títulos e resumos em português, com acesso à publicação original.</p></div>
+        <div class="period-switch" role="group" aria-label="Período das histórias"><button type="button" data-period="day" aria-pressed="false">Hoje</button><button type="button" data-period="week" aria-pressed="true">Esta semana</button></div>
+      </div>
+      <div class="filters-wrap"><div class="filter-row" role="group" aria-label="Filtrar notícias">
+        <button class="filter active" type="button" data-filter="all">Tudo</button><button class="filter" type="button" data-filter="ferramentas">Ferramentas</button><button class="filter" type="button" data-filter="pesquisa">Pesquisa</button><button class="filter" type="button" data-filter="mercado">Mercado</button><button class="filter" type="button" data-filter="github">GitHub</button>
+        <select class="region-select" id="region-filter" aria-label="Filtrar por região"><option value="all">Todas as regiões</option><option value="brasil">Brasil</option><option value="eua">Estados Unidos</option><option value="europa">Europa</option><option value="china">China</option><option value="github">GitHub</option></select>
+        <label class="search"><span class="sr-only" style="position:absolute;left:-9999px">Buscar histórias</span><input id="search" type="search" placeholder="Buscar no radar" /></label>
+      </div></div>
+      <div class="story-grid" id="story-grid"><div class="feed-message" id="empty">Buscando notícias nas fontes selecionadas…</div></div>
+    </section>
+
+    <section class="weekly" id="semana" aria-labelledby="weekly-title">
+      <div class="weekly-intro"><div class="eyebrow">CÓDIGO ABERTO · GITHUB</div><h2 id="weekly-title">Projetos de IA em alta.</h2><p>Repositórios que estão recebendo estrelas hoje ou nesta semana. Explore a lista original no GitHub.</p><a class="text-link" id="github-trending-link" href="https://github.com/trending?since=daily" target="_blank" rel="noopener noreferrer">Abrir GitHub Trending <span aria-hidden="true">↗</span></a></div>
+      <div class="weekly-list" id="github-list"><div class="weekly-item"><span class="weekly-num">—</span><div><strong>Carregando projetos em destaque</strong><span>Consulta ao GitHub Trending</span></div><span class="weekly-arrow">↗</span></div></div>
+    </section>
+
+    <section class="sources-panel" id="fontes" aria-labelledby="sources-title" style="margin:72px 0 64px">
+      <div class="section-head" style="margin:0"><div><div class="eyebrow">TRANSPARÊNCIA EDITORIAL</div><h2 id="sources-title">Fontes acompanhadas</h2><p>Uma seleção de veículos, fontes oficiais e canais de desenvolvimento. Cobertura ampla, sem alegar reunir tudo que se publica na internet.</p></div></div>
+      <div class="source-grid" id="source-list"><div class="feed-message">Carregando a lista de fontes…</div></div>
+    </section>
+  </main>
+  <footer class="shell footer" id="sobre"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">EA</span> Estado da Arte <span style="font-weight:450">I. A.</span></a><span>Um jornal independente sobre inteligência artificial.</span><div class="footer-links"><a href="#hoje">Instagram</a><a href="#hoje">Contato</a><a href="#hoje">Sobre o projeto</a></div><span>© <span id="year"></span> Estado da Arte I. A.</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./assets/news-art.js"></script>
+  <script>
+    const refreshIntervalMs = 30 * 60 * 1000;
+    const state = { period: 'week', category: 'all', region: 'all', query: '', items: [] };
+    const regionLabels = { brasil: 'Brasil', eua: 'Estados Unidos', europa: 'Europa', china: 'China', github: 'GitHub' };
+    const categoryLabels = { noticias: 'Notícias', ferramentas: 'Ferramentas', pesquisa: 'Pesquisa', mercado: 'Mercado', politica: 'Política', infraestrutura: 'Infraestrutura', hardware: 'Hardware', desenvolvimento: 'Desenvolvimento', seguranca: 'Segurança', segurança: 'Segurança', 'open source': 'Código aberto', repositório: 'Repositório', typescript: 'Linguagem TypeScript', javascript: 'Linguagem JavaScript', python: 'Linguagem Python', rust: 'Linguagem Rust', java: 'Linguagem Java', go: 'Linguagem Go' };
+    const storyGrid = document.querySelector('#story-grid');
+    const githubList = document.querySelector('#github-list');
+    const feedStatus = document.querySelector('#feed-status');
+    const search = document.querySelector('#search');
+    document.querySelector('#today-date').textContent = new Intl.DateTimeFormat('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Fortaleza' }).format(new Date());
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    function regionName(region) { return regionLabels[region] || 'Internacional'; }
+    function categoryName(category) { return categoryLabels[(category || '').toLocaleLowerCase('pt-BR')] || category || 'Notícias'; }
+    function imageTile(item, index) {
+      const text = `${item.title || ''} ${item.category || ''} ${item.summary || ''}`.toLocaleLowerCase('pt-BR');
+      if (/chip|hardware|sil[ií]cio|semicondutor/.test(text)) return 2;
+      if (/programa[cç][aã]o|github|software|c[oó]digo|desenvolvimento/.test(text)) return 3;
+      if (/pesquisa|cient[ií]fic|research|laborat[oó]rio/.test(text)) return 4;
+      if (/pol[ií]tic|regula[cç][aã]o|seguran[cç]a|tribunal|lei /.test(text)) return 5;
+      if (/imagem|v[ií]deo|arte|criativ|gera[cç][aã]o/.test(text)) return 6;
+      if (/agente|agent/.test(text)) return 1;
+      if (/infraestrutura|servidor|data center|nuvem|comput/.test(text)) return 7;
+      if (/mercado|pre[cç]o|modelo|llm/.test(text)) return 0;
+      return index % 8;
+    }
+    function localDate(value) { const date = new Date(value); return Number.isNaN(date.valueOf()) ? 'Data não informada' : new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'America/Fortaleza' }).format(date); }
+    function make(tag, className, text) { const element = document.createElement(tag); if (className) element.className = className; if (text !== undefined) element.textContent = text; return element; }
+    function safeLink(value) { try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : '#'; } catch { return '#'; } }
+    function articleHref(id) { return `./noticia.html?id=${encodeURIComponent(id)}`; }
+    function rememberArticle(item) { try { sessionStorage.setItem('estadoArteArticlePreview', JSON.stringify(item)); } catch {} }
+    function openArticle(item) { rememberArticle(item); window.location.href = articleHref(item.id); }
+    function safeImageUrl(value, base) {
+      try { const url = new URL(value, base); return url.protocol === 'https:' && !url.username && !url.password ? url.href : ''; }
+      catch { return ''; }
+    }
+    function putNewsImage(container, item, className) {
+      const url = safeImageUrl(item.imageUrl, item.url || item.sourceUrl);
+      if (!url) { container.classList.add('has-fallback'); container.append(window.createNewsFallback(item)); return; }
+      container.classList.add('has-image');
+      const image = make('img', className);
+      image.src = url;
+      image.alt = `Imagem da notícia: ${item.title || 'inteligência artificial'}`;
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      image.referrerPolicy = 'no-referrer';
+      image.addEventListener('error', () => {
+        container.classList.remove('has-image');
+        container.classList.add('has-fallback');
+        image.remove();
+        container.append(window.createNewsFallback(item));
+      }, { once: true });
+      container.prepend(image);
+    }
+    function isInPeriod(item) {
+      const date = new Date(item.publishedAt);
+      if (Number.isNaN(date.valueOf())) return false;
+      if (state.period === 'day') { const start = new Date(); start.setHours(0, 0, 0, 0); return date >= start && date <= new Date(Date.now() + 60_000); }
+      return date >= new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) && date <= new Date(Date.now() + 60_000);
+    }
+    function matches(item) {
+      const category = state.category === 'all' ? item.kind !== 'repository' : (state.category === 'github' ? item.kind === 'repository' : item.category === state.category);
+      const region = state.region === 'all' || item.region === state.region;
+      const text = `${item.title} ${item.summary || ''} ${item.source || ''}`.toLocaleLowerCase('pt-BR');
+      return isInPeriod(item) && category && region && (!state.query || text.includes(state.query));
+    }
+    function savedIds() { try { return JSON.parse(localStorage.getItem('estadoArteSaved') || '[]'); } catch { return []; } }
+    function renderStories() {
+      storyGrid.replaceChildren();
+      const items = state.items.filter(matches);
+      if (!items.length) {
+        const message = state.period === 'day' && state.category === 'all' && state.region === 'all' && !state.query
+          ? 'Nenhuma matéria jornalística sobre IA foi publicada hoje. Veja as notícias mais recentes desta semana.'
+          : 'Nenhuma notícia encontrada nesse período ou com esses filtros.';
+        storyGrid.append(make('div', 'feed-message', message));
+        if (state.period === 'day' && state.category === 'all' && state.region === 'all' && !state.query) {
+          const weekButton = make('button', 'text-link', 'Ver notícias da semana →');
+          weekButton.type = 'button';
+          weekButton.addEventListener('click', () => {
+            state.period = 'week';
+            document.querySelectorAll('[data-period]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.period === 'week')));
+            loadNews();
+          });
+          storyGrid.append(weekButton);
+        }
+        return;
+      }
+      items.forEach((item, index) => {
+        const article = make('article', 'story');
+        article.dataset.articleId = item.id;
+        article.tabIndex = 0;
+        article.setAttribute('aria-label', `Ler resumo: ${item.title}`);
+        const visual = make('div', 'story-visual');
+        putNewsImage(visual, item, 'story-image');
+        visual.append(make('span', 'visual-label', regionName(item.region)));
+        const body = make('div', 'story-body');
+        const meta = make('div', 'story-meta');
+        meta.append(make('span', 'category', categoryName(item.category).toLocaleUpperCase('pt-BR')));
+        if (item.translationStatus === 'translated' || item.translationStatus === 'partial') meta.append(make('span', 'translation-badge', 'TRADUZIDO'));
+        else if (item.translationStatus === 'unavailable') meta.append(make('span', 'translation-badge', 'SEM TRADUÇÃO'));
+        else if (item.translationStatus === 'fallback') meta.append(make('span', 'translation-badge', 'RESUMO EM PORTUGUÊS'));
+        meta.append(make('span', '', localDate(item.publishedAt)));
+        const heading = make('h3');
+        const link = make('a', '', item.title);
+        link.href = articleHref(item.id);
+        link.addEventListener('click', () => rememberArticle(item));
+        heading.append(link);
+        body.append(meta, heading);
+        if (item.repository) body.append(make('div', 'repo-identifier', `Repositório: ${item.repository}`));
+        body.append(make('p', '', item.summary || 'Abra a publicação original para ler a reportagem completa.'));
+        if (item.originalTitle || item.originalSummary) {
+          const details = make('details', 'original-copy'); details.append(make('summary', '', 'Ver texto original'));
+          const original = [item.originalTitle, item.originalSummary].filter(Boolean).join(' — ');
+          details.append(make('p', '', original)); body.append(details);
+        }
+        const bottom = make('div', 'story-bottom');
+        bottom.append(make('span', '', item.source || 'Fonte original'));
+        const read = make('a', 'read-summary', 'Ler resumo →');
+        read.href = articleHref(item.id);
+        read.addEventListener('click', () => rememberArticle(item));
+        bottom.append(read);
+        const save = make('button', 'save', savedIds().includes(item.id) ? '✓' : '＋');
+        save.type = 'button'; save.dataset.saveId = item.id; save.setAttribute('aria-label', 'Salvar notícia'); save.setAttribute('aria-pressed', String(savedIds().includes(item.id)));
+        bottom.append(save); body.append(bottom); article.append(visual, body); storyGrid.append(article);
+      });
+    }
+    function renderGithub() {
+      githubList.replaceChildren();
+      const repos = state.items.filter(item => item.kind === 'repository');
+      if (!repos.length) {
+        const row = make('div', 'weekly-item'); row.append(make('span', 'weekly-num', '↗'));
+        const info = make('div'); info.append(make('strong', '', 'Abrir ranking atualizado no GitHub'), make('span', '', 'Os repositórios em alta aparecem na página oficial.'));
+        row.append(info, make('span', 'weekly-arrow', '↗')); githubList.append(row);
+      } else {
+        repos.slice(0, 5).forEach((item, index) => {
+          const link = make('a', 'weekly-item'); link.href = safeLink(item.url); link.target = '_blank'; link.rel = 'noopener noreferrer';
+          link.append(make('span', 'weekly-num', String(index + 1).padStart(2, '0')));
+          const info = make('div'); info.append(make('strong', '', item.title));
+          if (item.repository) info.append(make('span', '', `Repositório: ${item.repository}`));
+          info.append(make('span', '', [categoryName(item.category), item.trend].filter(Boolean).join(' · ') || item.summary || 'Projeto em alta'));
+          link.append(info, make('span', 'weekly-arrow', '↗')); githubList.append(link);
+        });
+      }
+      const suffix = state.period === 'week' ? 'weekly' : 'daily';
+      document.querySelector('#github-trending-link').href = `https://github.com/trending?since=${suffix}`;
+    }
+    function renderFeature() {
+      const lead = state.items.find(item => item.translationStatus === 'native' && item.kind !== 'repository')
+        || state.items.find(item => item.id === 'cnn-precos-ia-20260925')
+        || state.items.find(item => item.kind !== 'repository');
+      if (!lead) return;
+      document.querySelector('#feature-kicker').textContent = `${categoryName(lead.category)} · ${regionName(lead.region)}`;
+      document.querySelector('#feature-title').textContent = lead.title;
+      document.querySelector('#feature-summary').textContent = lead.summary || 'Abra a publicação original para ler os detalhes desta notícia.';
+      const link = document.querySelector('#feature-link');
+      link.href = articleHref(lead.id);
+      link.onclick = () => rememberArticle(lead);
+      document.querySelector('.main-feature').dataset.articleId = lead.id;
+      document.querySelector('.main-feature').setAttribute('aria-label', `Abrir resumo da notícia em destaque: ${lead.title}`);
+      const art = document.querySelector('#feature-art');
+      art.className = 'feature-art';
+      const caption = document.querySelector('#feature-caption');
+      art.querySelector('img, .no-image-note')?.remove();
+      putNewsImage(art, lead, 'feature-image');
+      art.append(caption);
+      art.setAttribute('aria-label', `Imagem da notícia em destaque: ${lead.title}`);
+      document.querySelector('#feature-caption').textContent = `${lead.source || 'Fonte original'} · ${regionName(lead.region)}`;
+    }
+    async function renderSources() {
+      const container = document.querySelector('#source-list');
+      try {
+        const response = await fetch('./news-sources.json'); if (!response.ok) throw new Error('fontes indisponíveis');
+        const data = await response.json(); container.replaceChildren();
+        data.feeds.forEach(source => { const link = make('a', 'source-link'); link.href = safeLink(source.sourceUrl); link.target = '_blank'; link.rel = 'noopener noreferrer'; link.append(make('strong', '', source.name), make('span', '', regionName(source.region))); container.append(link); });
+        const github = make('a', 'source-link'); github.href = `https://github.com/trending?since=daily`; github.target = '_blank'; github.rel = 'noopener noreferrer'; github.append(make('strong', '', 'GitHub Trending'), make('span', '', 'GitHub')); container.append(github);
+      } catch { container.replaceChildren(make('div', 'feed-message', 'A lista de fontes fica disponível quando o site é iniciado pelo servidor local.')); }
+    }
+    async function loadNews() {
+      feedStatus.innerHTML = '<strong>Atualizando:</strong> consultando feeds e fontes monitoradas.';
+      try {
+        const response = await fetch(`/api/news?period=${state.period}`); if (!response.ok) throw new Error('servidor de notícias indisponível');
+        const data = await response.json(); state.items = data.items || [];
+        const live = (data.sourceStatus || []).filter(source => source.status === 'ok').length;
+        const total = (data.sourceStatus || []).length;
+        const unavailable = total - live;
+        const untranslated = Number(data.untranslatedCount) || 0;
+        feedStatus.innerHTML = `<strong>Atualizado ${new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Fortaleza' }).format(new Date(data.generatedAt))}:</strong> ${live} de ${total} feeds responderam${unavailable ? `; ${unavailable} indisponível(is) agora` : ''}. ${untranslated ? `${untranslated} matérias ficaram de fora até haver tradução para português. ` : ''}Conteúdo vinculado às fontes originais.`;
+        const newsCount = state.items.filter(item => item.kind !== 'repository').length;
+        const projectCount = state.items.filter(item => item.kind === 'repository').length;
+        document.querySelector('#last-updated').textContent = `${newsCount} notícias${projectCount ? ` · ${projectCount} projetos do GitHub` : ''} · atualização automática a cada 30 minutos.`;
+      } catch {
+        try {
+          const response = await fetch('./news.json'); if (!response.ok) throw new Error('semente indisponível');
+          const data = await response.json();
+          state.items = data.periods?.[state.period] || data.items || [];
+          const generatedAt = data.generatedAt ? new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'America/Fortaleza' }).format(new Date(data.generatedAt)) : '';
+          const live = (data.sourceStatus || []).filter(source => source.status === 'ok').length;
+          const total = (data.sourceStatus || []).length;
+          const sourceSummary = total ? `${live} de ${total} fontes responderam` : 'seleção editorial disponível';
+          feedStatus.innerHTML = `<strong>Jornal atualizado${generatedAt ? ` em ${generatedAt}` : ''}:</strong> ${sourceSummary}. A publicação é renovada automaticamente a cada 30 minutos; as matérias levam à fonte original.`;
+          const newsCount = state.items.filter(item => item.kind !== 'repository').length;
+          const projectCount = state.items.filter(item => item.kind === 'repository').length;
+          document.querySelector('#last-updated').textContent = `${newsCount} notícias${projectCount ? ` · ${projectCount} projetos do GitHub` : ''} · atualização automática a cada 30 minutos.`;
+        } catch {
+          state.items = [];
+          feedStatus.innerHTML = '<strong>Servidor necessário:</strong> execute <code>npm start</code> nesta pasta para atualizar os feeds e abrir o jornal.';
+          document.querySelector('#last-updated').textContent = 'O portal precisa ser aberto pelo servidor local para carregar o feed.';
+        }
+      }
+      renderStories(); renderGithub(); renderFeature();
+    }
+    document.querySelectorAll('[data-period]').forEach(button => button.addEventListener('click', () => {
+      state.period = button.dataset.period;
+      document.querySelectorAll('.period-switch button').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      loadNews();
+    }));
+    document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
+      state.category = button.dataset.filter;
+      document.querySelectorAll('.filter').forEach(item => item.classList.toggle('active', item === button)); renderStories();
+    }));
+    document.querySelector('#region-filter').addEventListener('change', event => { state.region = event.target.value; renderStories(); });
+    search.addEventListener('input', event => { state.query = event.target.value.trim().toLocaleLowerCase('pt-BR'); renderStories(); });
+    storyGrid.addEventListener('click', event => {
+      const button = event.target.closest('[data-save-id]');
+      if (button) {
+        const ids = savedIds(); const id = button.dataset.saveId; const saved = ids.includes(id);
+        localStorage.setItem('estadoArteSaved', JSON.stringify(saved ? ids.filter(value => value !== id) : [...ids, id]));
+        button.textContent = saved ? '＋' : '✓'; button.setAttribute('aria-pressed', String(!saved)); showToast(saved ? 'Removido dos salvos' : 'Salvo neste dispositivo');
+        return;
+      }
+      if (event.target.closest('a, button, details, summary, input, select, textarea')) return;
+      const card = event.target.closest('.story[data-article-id]');
+      const item = card && state.items.find(candidate => candidate.id === card.dataset.articleId);
+      if (item) openArticle(item);
+    });
+    storyGrid.addEventListener('keydown', event => {
+      const card = event.target.closest('.story[data-article-id]');
+      if (card && event.target === card && event.key === 'Enter') {
+        const item = state.items.find(candidate => candidate.id === card.dataset.articleId);
+        if (item) openArticle(item);
+      }
+    });
+    document.querySelector('.main-feature').addEventListener('click', event => {
+      if (event.target.closest('a, button')) return;
+      const item = state.items.find(candidate => candidate.id === event.currentTarget.dataset.articleId);
+      if (item) openArticle(item);
+    });
+    document.querySelector('#refresh-feed').addEventListener('click', loadNews);
+    document.querySelectorAll('.period-switch button').forEach(button => button.addEventListener('click', () => { const since = button.dataset.period === 'week' ? 'weekly' : 'daily'; document.querySelector('#github-trending-link').href = `https://github.com/trending?since=${since}`; }));
+    let toastTimer;
+    function showToast(message) { const toast = document.querySelector('#toast'); toast.textContent = message; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2600); }
+    renderSources(); loadNews(); setInterval(loadNews, refreshIntervalMs);
+  </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f2efe8" />
+  <meta name="description" content="Resumo em português de uma notícia sobre inteligência artificial, com link para a publicação original." />
+  <title>Notícia | Estado da Arte I. A.</title>
+  <style>
+    :root { color-scheme: light; --paper: #f2efe8; --ink: #171816; --muted: #77746e; --line: #d9d4ca; --accent: #c3543b; --serif: Iowan Old Style, "Palatino Linotype", "Book Antiqua", Georgia, serif; --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .topbar { border-bottom: 1px solid var(--line); }
+    .nav { width: min(100% - 48px, 1100px); min-height: 76px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 15px; font-weight: 720; letter-spacing: -.4px; }
+    .brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: var(--paper); font: 700 12px var(--serif); }
+    .back { text-decoration: none; font-size: 12px; color: #56534e; }
+    .back:hover, .source-link:hover { color: var(--accent); }
+    main { width: min(100% - 48px, 820px); margin: 0 auto; padding: 45px 0 80px; }
+    .eyebrow { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 1.25px; text-transform: uppercase; }
+    h1 { max-width: 800px; margin: 22px 0 17px; font: 500 clamp(38px, 7vw, 68px)/.99 var(--serif); letter-spacing: -1.9px; }
+    .dek { max-width: 710px; margin: 0; color: #62605a; font-size: clamp(16px, 2vw, 20px); line-height: 1.6; }
+    .byline { margin: 22px 0 28px; color: #77746e; font-size: 11px; }
+    .hero-image { display: block; width: 100%; max-height: 520px; aspect-ratio: 16 / 9; object-fit: cover; background: #e4ded4; }
+    .image-note { width: 100%; aspect-ratio: 16 / 9; display: grid; place-items: center; background: #e4ded4; color: #6f695f; font-size: 13px; }
+    .summary { max-width: 690px; margin: 42px auto 0; }
+    .summary-label { margin: 0 0 15px; color: var(--accent); font-size: 10px; font-weight: 750; letter-spacing: 1.2px; text-transform: uppercase; }
+    .summary p { margin: 0 0 18px; color: #393a36; font: 400 19px/1.75 var(--serif); }
+    .source-box { margin-top: 37px; padding: 21px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .source-caption { margin: 0 0 8px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .source-name { margin: 0 0 12px; font-size: 14px; font-weight: 700; }
+    .source-link { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: 13px; font-weight: 650; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    .footer { width: min(100% - 48px, 1100px); margin: auto; padding: 22px 0 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+    .error { padding: 55px 0; text-align: center; color: var(--muted); }
+    .error a { color: var(--accent); }
+    @media (max-width: 560px) { .nav, main, .footer { width: min(100% - 34px, 820px); } main { padding-top: 32px; } h1 { letter-spacing: -1.1px; } .summary { margin-top: 30px; } .summary p { font-size: 17px; } }
+  </style>
+  <link rel="stylesheet" href="./assets/news-art.css" />
+</head>
+<body>
+  <header class="topbar"><nav class="nav" aria-label="Navegação principal">
+    <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">EA</span><span>Estado da Arte I. A.</span></a>
+    <a class="back" href="./index.html">← Voltar ao jornal</a>
+  </nav></header>
+  <main id="article" aria-live="polite"><div class="error">Carregando a notícia…</div></main>
+  <footer class="footer">Estado da Arte I. A. · Resumo em português com acesso à fonte original.</footer>
+  <script src="./assets/news-art.js"></script>
+  <script>
+    const root = document.querySelector('#article');
+    const articleId = new URLSearchParams(location.search).get('id');
+    function safeExternal(value) {
+      try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : ''; }
+      catch { return ''; }
+    }
+    function dateLabel(value) {
+      const date = new Date(value);
+      return Number.isNaN(date.valueOf()) ? '' : new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'America/Fortaleza' }).format(date);
+    }
+    function showError(message) {
+      root.replaceChildren();
+      const section = document.createElement('section'); section.className = 'error';
+      const text = document.createElement('p'); text.textContent = message;
+      const back = document.createElement('a'); back.href = './index.html'; back.textContent = 'Voltar para as notícias';
+      section.append(text, back); root.append(section);
+    }
+    function showArticle(item) {
+      if (!item) { showError('Esta notícia não está disponível no jornal neste momento.'); return; }
+      const sourceHref = safeExternal(item.url || item.sourceUrl);
+      if (!sourceHref) { showError('Não foi possível validar o endereço da fonte desta notícia.'); return; }
+      document.title = `${item.title} | Estado da Arte I. A.`;
+      document.querySelector('meta[name="description"]').content = item.summary || item.title;
+      root.replaceChildren();
+      const kicker = document.createElement('div'); kicker.className = 'eyebrow';
+      const category = document.createElement('span'); category.textContent = item.category || 'Inteligência artificial';
+      const region = document.createElement('span'); region.textContent = item.source || item.region || 'Fonte original';
+      kicker.append(category, region);
+      const heading = document.createElement('h1'); heading.textContent = item.title;
+      const byline = document.createElement('div'); byline.className = 'byline';
+      byline.textContent = [item.source, dateLabel(item.publishedAt)].filter(Boolean).join(' · ');
+      root.append(kicker, heading, byline);
+
+      const imageUrl = safeExternal(item.imageUrl);
+      if (imageUrl) {
+        const image = document.createElement('img'); image.className = 'hero-image'; image.src = imageUrl; image.alt = `Imagem relacionada à notícia: ${item.title}`; image.loading = 'eager'; image.referrerPolicy = 'no-referrer';
+        image.addEventListener('error', () => image.replaceWith(window.createNewsFallback(item, 'news-art-fallback detail-art')), { once: true });
+        root.append(image);
+      } else {
+        root.append(window.createNewsFallback(item, 'news-art-fallback detail-art'));
+      }
+
+      const summary = document.createElement('section'); summary.className = 'summary';
+      const label = document.createElement('h2'); label.className = 'summary-label'; label.textContent = 'Resumo da notícia';
+      const paragraph = document.createElement('p'); paragraph.textContent = item.summary || 'A fonte não forneceu um resumo para esta publicação. Acesse a matéria original para ler todos os detalhes.';
+      summary.append(label, paragraph);
+      if (item.kind === 'repository' && item.repository) {
+        const repo = document.createElement('p'); repo.textContent = `Projeto no GitHub: ${item.repository}`; summary.append(repo);
+      }
+      const source = document.createElement('section'); source.className = 'source-box';
+      const caption = document.createElement('p'); caption.className = 'source-caption'; caption.textContent = 'Matéria completa na fonte';
+      const name = document.createElement('p'); name.className = 'source-name'; name.textContent = item.source || new URL(sourceHref).hostname;
+      const link = document.createElement('a'); link.className = 'source-link'; link.href = sourceHref; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = 'Acessar a notícia original ↗';
+      source.append(caption, name, link); summary.append(source); root.append(summary);
+    }
+    async function loadArticle() {
+      if (!articleId) { showError('Não foi informado qual notícia deve ser aberta.'); return; }
+      try {
+        const remembered = JSON.parse(sessionStorage.getItem('estadoArteArticlePreview') || 'null');
+        if (remembered?.id === articleId) { showArticle(remembered); return; }
+      } catch {}
+      for (const period of ['week', 'day']) {
+        try {
+          const response = await fetch(`/api/news?period=${period}`);
+          if (response.ok) {
+            const data = await response.json();
+            const item = (data.items || []).find(candidate => candidate.id === articleId);
+            if (item) { showArticle(item); return; }
+          }
+        } catch {}
+      }
+      try {
+        const response = await fetch('./news.json');
+        if (response.ok) {
+          const data = await response.json();
+          const items = data.items || [...(data.periods?.day || []), ...(data.periods?.week || [])];
+          const item = items.find(candidate => candidate.id === articleId);
+          if (item) { showArticle(item); return; }
+        }
+      } catch {}
+      showError('Esta notícia pode ter saído da seleção atual. Volte ao jornal para ver as publicações mais recentes.');
+    }
+    loadArticle();
+  </script>
+</body>
+</html>

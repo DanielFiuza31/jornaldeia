@@ -1,0 +1,112 @@
+{
+  "refreshMinutes": 30,
+  "maxPerFeed": 30,
+  "feeds": [
+    {
+      "id": "br-tecnoblog",
+      "name": "Tecnoblog",
+      "region": "brasil",
+      "language": "pt",
+      "url": "https://tecnoblog.net/feed",
+      "sourceUrl": "https://tecnoblog.net/"
+    },
+    {
+      "id": "br-canaltech",
+      "name": "Canaltech",
+      "region": "brasil",
+      "language": "pt",
+      "url": "https://canaltech.com.br/rss/",
+      "sourceUrl": "https://canaltech.com.br/"
+    },
+    {
+      "id": "us-verge",
+      "name": "The Verge",
+      "region": "eua",
+      "language": "en",
+      "url": "https://www.theverge.com/rss/index.xml",
+      "sourceUrl": "https://www.theverge.com/ai-artificial-intelligence"
+    },
+    {
+      "id": "us-ars",
+      "name": "Ars Technica",
+      "region": "eua",
+      "language": "en",
+      "url": "https://feeds.arstechnica.com/arstechnica/index",
+      "sourceUrl": "https://arstechnica.com/ai/"
+    },
+    {
+      "id": "eu-techeu",
+      "name": "Tech.eu",
+      "region": "europa",
+      "language": "en",
+      "url": "https://tech.eu/feed/",
+      "sourceUrl": "https://tech.eu/category/artificial-intelligence/"
+    },
+    {
+      "id": "br-google",
+      "name": "Google Notícias · Brasil",
+      "region": "brasil",
+      "language": "pt",
+      "url": "https://news.google.com/rss/search?q=%28site%3Acnnbrasil.com.br%2Ftecnologia+OR+site%3Acanaltech.com.br+OR+site%3Atecmundo.com.br+OR+site%3Atecnoblog.net%29+%22intelig%C3%AAncia+artificial%22+when%3A7d&hl=pt-BR&gl=BR&ceid=BR%3Apt-419",
+      "sourceUrl": "https://news.google.com/"
+    },
+    {
+      "id": "us-google",
+      "name": "Google Notícias · Estados Unidos",
+      "region": "eua",
+      "language": "en",
+      "url": "https://news.google.com/rss/search?q=%28site%3Atechcrunch.com+OR+site%3Atheverge.com+OR+site%3Aarstechnica.com+OR+site%3Atechnologyreview.com%29+AI+when%3A7d&hl=en-US&gl=US&ceid=US%3Aen",
+      "sourceUrl": "https://news.google.com/"
+    },
+    {
+      "id": "eu-google",
+      "name": "Google Notícias · Europa",
+      "region": "europa",
+      "language": "en",
+      "url": "https://news.google.com/rss/search?q=%28site%3Aeuractiv.com+OR+site%3Adigital-strategy.ec.europa.eu+OR+site%3Atech.eu%29+AI+when%3A7d&hl=en-GB&gl=GB&ceid=GB%3Aen",
+      "sourceUrl": "https://news.google.com/"
+    },
+    {
+      "id": "china-google",
+      "name": "Google Notícias · China",
+      "region": "china",
+      "language": "en",
+      "url": "https://news.google.com/rss/search?q=%28site%3Ascmp.com+OR+site%3Aenglish.news.cn+OR+site%3Achinadaily.com.cn%29+%28AI+OR+%22artificial+intelligence%22+OR+%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%29+when%3A7d&hl=en&gl=SG&ceid=SG%3Aen",
+      "sourceUrl": "https://news.google.com/"
+    },
+    {
+      "id": "china-scmp",
+      "name": "South China Morning Post · Tecnologia",
+      "region": "china",
+      "language": "en",
+      "url": "https://www.scmp.com/rss/36/feed/",
+      "sourceUrl": "https://www.scmp.com/rss"
+    },
+    {
+      "id": "mittr",
+      "name": "MIT Technology Review",
+      "region": "eua",
+      "language": "en",
+      "url": "https://www.technologyreview.com/feed/",
+      "sourceUrl": "https://www.technologyreview.com/topic/artificial-intelligence/"
+    },
+    {
+      "id": "techcrunch",
+      "name": "TechCrunch · Tecnologia",
+      "region": "eua",
+      "language": "en",
+      "url": "https://techcrunch.com/feed/",
+      "sourceUrl": "https://techcrunch.com/rss-terms-of-use/"
+    },
+    {
+      "id": "github-blog",
+      "name": "GitHub Blog",
+      "region": "github",
+      "language": "en",
+      "url": "https://github.blog/feed/",
+      "sourceUrl": "https://github.blog/"
+    }
+  ],
+  "githubTrendingUrl": "https://github.com/trending?since=",
+  "copyrightNote": "O portal exibe atribuição, título, data, link e resumo curto quando o feed disponibiliza esse conteúdo. Imagens são carregadas pela URL fornecida no feed, sem armazenamento local, com link para a matéria e crédito da fonte. Respeite os termos de cada veículo."
+}

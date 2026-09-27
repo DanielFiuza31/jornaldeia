@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-09-26T00:00:00-03:00",
+  "items": [
+    {
+      "id": "cnn-precos-ia-20260925",
+      "title": "Preços de modelos de IA caem na disputa entre OpenAI e Anthropic",
+      "summary": "OpenAI e Anthropic reduziram os preços de seus modelos mais recentes. A queda amplia a disputa por clientes e torna o custo por uso um fator decisivo.",
+      "source": "CNN Brasil",
+      "sourceUrl": "https://www.cnnbrasil.com.br/economia/money/inteligencia-artificial/radar-cnn-competicao-entre-ias-derruba-precos-de-modelos-avancados/",
+      "imageUrl": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/09/inteligencia-artificial-dinheiro.png?w=1200&h=630&crop=1",
+      "publishedAt": "2026-09-25T19:51:00-03:00",
+      "region": "brasil",
+      "category": "mercado",
+      "kind": "news"
+    },
+    {
+      "id": "microsoft-copilot-20260925",
+      "title": "Microsoft amplia o Copilot com agente de programação e assistente de trabalho",
+      "summary": "O pacote combina uma ferramenta que cria software a partir de instruções com um agente que acompanha tarefas do trabalho.",
+      "source": "Reuters / CNN Brasil",
+      "sourceUrl": "https://www.cnnbrasil.com.br/economia/money/inteligencia-artificial/microsoft-amplia-recursos-do/",
+      "imageUrl": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/Reuters_Direct_Media/BrazilOnlineReportTechnologyNews/tagreuters.com2026binary_LYNXMPEM8O180-BASEIMAGE.jpg?w=800&h=495&crop=1",
+      "publishedAt": "2026-09-25T10:27:00-03:00",
+      "region": "eua",
+      "category": "ferramentas",
+      "kind": "news"
+    },
+    {
+      "id": "anthropic-pentagono-20260925",
+      "title": "Tribunal dos EUA mantém restrição à Anthropic em contratos militares",
+      "summary": "O tribunal de apelações manteve a restrição do Pentágono. A disputa segue após uma decisão diferente de um tribunal da Califórnia.",
+      "source": "CNN Brasil",
+      "sourceUrl": "https://www.cnnbrasil.com.br/economia/money/inteligencia-artificial/tribunal-dos-eua-inclusao-da-anthropic-em-proibicao-do-pentagono-era-legal/",
+      "imageUrl": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/Reuters_Direct_Media/BrazilOnlineReportTechnologyNews/tagreuters.com2026binary_LYNXMPEM4K1GD-BASEIMAGE.jpg?w=800&h=533&crop=1",
+      "publishedAt": "2026-09-25T18:30:00-03:00",
+      "region": "eua",
+      "category": "politica",
+      "kind": "news"
+    },
+    {
+      "id": "euractiv-europa-self-improve-20260924",
+      "title": "Europa debate estratégia de IA baseada em modelos mais acessíveis",
+      "summary": "Especialistas discutem uma estratégia europeia baseada em modelos mais baratos, caso os sistemas de IA não passem a se aperfeiçoar sozinhos.",
+      "source": "Euractiv",
+      "sourceUrl": "https://www.euractiv.com/news/what-is-europes-plan-if-ai-doesnt-self-improve/",
+      "publishedAt": "2026-09-24T04:00:00+02:00",
+      "region": "europa",
+      "category": "pesquisa",
+      "kind": "news"
+    },
+    {
+      "id": "xinhua-computing-network-20260920",
+      "title": "China planeja rede nacional de computação para acelerar a IA",
+      "summary": "O plano trata capacidade de computação como infraestrutura estratégica para treinar e operar sistemas de IA.",
+      "source": "Xinhua",
+      "sourceUrl": "https://english.news.cn/20260920/6d2215c3da5344e49f99ab9f54f22dc1/c.html",
+      "imageUrl": "https://english.news.cn/20260920/6d2215c3da5344e49f99ab9f54f22dc1/zxcode_202609206d2215c3da5344e49f99ab9f54f22dc1.jpg",
+      "publishedAt": "2026-09-20T20:49:00+08:00",
+      "region": "china",
+      "category": "infraestrutura",
+      "kind": "news"
+    },
+    {
+      "id": "alibaba-ai-chips-20260922",
+      "title": "Alibaba anuncia chip próprio e novos modelos de IA",
+      "summary": "A empresa apresentou chips próprios e sinalizou novos modelos Qwen, em meio à disputa tecnológica entre China e Estados Unidos.",
+      "source": "Associated Press",
+      "sourceUrl": "https://apnews.com/article/alibaba-ai-chip-qwen-zhenwu-china-us-b29908e516faff9f5a82b201ba954aab",
+      "imageUrl": "https://dims.apnews.com/dims4/default/16a1b04/2147483647/strip/true/crop/6000x4000%2B0%2B0/resize/320x213%21/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F31%2Ff5%2Fb7ee4ab6243125aefe7f701aaf8f%2F200ce62db5f94c5186814c485835fe15",
+      "publishedAt": "2026-09-22T15:16:00+08:00",
+      "region": "china",
+      "category": "hardware",
+      "kind": "news"
+    },
+    {
+      "id": "github-copilot-slack-teams-20260925",
+      "title": "GitHub amplia integração do Copilot com Slack e Teams",
+      "summary": "A atualização permite usar arquivos e conversas como contexto e retomar no chat o trabalho iniciado no Slack ou no Teams.",
+      "source": "GitHub Changelog",
+      "sourceUrl": "https://github.blog/changelog/2026-09-25-updates-to-github-copilot-for-slack-and-microsoft-teams/",
+      "imageUrl": "https://github.blog/wp-content/uploads/2026/09/654804430-94033282-c6bd-4bd8-9b27-5e38a5ef2ff3.jpg",
+      "publishedAt": "2026-09-25T09:00:00-07:00",
+      "region": "github",
+      "category": "desenvolvimento",
+      "kind": "github"
+    },
+    {
+      "id": "techcrunch-agent-swarms-20260925",
+      "title": "Investigação aponta agentes de IA consultando bancos de dados expostos",
+      "summary": "A reportagem descreve agentes automatizados consultando bases de dados abertas para encontrar informações e levanta dúvidas sobre limites e supervisão.",
+      "source": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts/",
+      "imageUrl": "https://techcrunch.com/wp-content/uploads/2025/02/GettyImages-2197091379.jpg?w=1024",
+      "publishedAt": "2026-09-25T08:48:00-07:00",
+      "region": "eua",
+      "category": "seguranca",
+      "kind": "news"
+    }
+  ]
+}
