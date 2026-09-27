@@ -147,6 +147,11 @@
     .region-select { flex: 0 0 auto; border: 1px solid var(--line); border-radius: 99px; padding: 10px 13px; background: transparent; color: #55504e; font-size: 11px; outline: none; }
     .feed-message { grid-column: 1 / -1; border: 1px dashed var(--line); border-radius: 14px; padding: 36px; color: var(--muted); text-align: center; font-size: 13px; }
     .mobile-menu { display: none; }
+    @media (max-width: 1024px) {
+      .shell { padding-inline: 28px; }
+      .hero-grid { grid-template-columns: minmax(0, 1.1fr) minmax(210px, .9fr); gap: 22px; }
+      h1 { font-size: clamp(44px, 6vw, 64px); }
+    }
     @media (max-width: 800px) {
       .source-grid { grid-template-columns: repeat(2, 1fr); }
       .shell { padding: 0 22px; }
@@ -353,35 +358,203 @@
       .weekly-list { padding: 11px 22px; }
     }
     @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+    /* Sistema editorial refinado, inspirado em escalas fluidas e estados consistentes. */
+    :root {
+      --paper: #f3f0e9;
+      --ink: #191916;
+      --muted: #706d66;
+      --line: #d8d2c8;
+      --card: #faf8f2;
+      --accent: #b94f39;
+      --space-section: clamp(3.6rem, 7vw, 6.4rem);
+      --focus-ring: 0 0 0 3px #f3f0e9, 0 0 0 5px #9d3f2d;
+    }
+    html { scroll-padding-top: 96px; }
+    body { line-height: 1.5; }
+    .shell { max-width: 1360px; padding-inline: clamp(20px, 4.25vw, 64px); }
+    .topbar { background: #f3f0e9f2; border-bottom-color: #d8d2c8; }
+    .edition-rail {
+      min-height: 29px; display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; border-bottom: 1px solid var(--line); color: #777269;
+      font-size: 9px; font-weight: 700; letter-spacing: 1.15px; text-transform: uppercase;
+    }
+    .edition-rail span:first-child { color: var(--accent); }
+    .nav { min-height: 70px; }
+    .nav-links { gap: clamp(17px, 2vw, 28px); }
+    .nav-links a, .nav-action { min-height: 44px; display: inline-flex; align-items: center; }
+    .nav-action { transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease; }
+    .nav-action:hover { transform: translateY(-1px); }
+    .hero { padding-block: clamp(38px, 5.5vw, 66px) 30px; }
+    h1 { max-width: 960px; font-size: clamp(3.6rem, 8vw, 7rem); text-wrap: balance; }
+    .hero-aside p { max-width: 590px; text-wrap: pretty; }
+    .demo-banner { min-height: 46px; display: flex; align-items: center; line-height: 1.55; }
+    .edition-ticker { margin-block: 5px 30px; }
+    .main-feature { min-height: clamp(350px, 39vw, 490px); }
+    .feature-copy { padding: clamp(28px, 4vw, 54px); }
+    .feature-copy h2 { max-width: 12ch; text-wrap: balance; }
+    .feature-copy p { text-wrap: pretty; }
+    .feature-art { min-height: 350px; }
+    .feature-image { object-position: center; }
+    .section-head { margin-top: var(--space-section); }
+    .section-head h2 { text-wrap: balance; }
+    .period-switch { min-height: 44px; align-items: center; }
+    .period-switch button { min-height: 36px; min-width: 66px; }
+    .filter-row { gap: 9px; }
+    .filter, .region-select { min-height: 42px; }
+    .search input { min-height: 42px; }
+    .story-grid { gap: clamp(30px, 4vw, 52px) clamp(18px, 2.5vw, 32px); }
+    .story-visual { aspect-ratio: 3 / 2; background-color: #e6e0d6; }
+    .story-image { object-position: center; }
+    .story h3 { font-size: clamp(21px, 1.8vw, 26px); text-wrap: pretty; }
+    .story p { max-width: 58ch; text-wrap: pretty; }
+    .story:first-child h3 { max-width: 18ch; }
+    .story-bottom { min-height: 43px; align-items: center; }
+    .save { width: 40px; height: 40px; }
+    .weekly { margin-top: var(--space-section); }
+    .weekly-intro h2 { text-wrap: balance; }
+    .weekly-item { transition: padding .2s ease, background-color .2s ease; }
+    a.weekly-item:hover { padding-inline: 8px; background: #f2ece2; }
+    .source-grid { gap: 12px; }
+    .source-link { min-height: 88px; transition: transform .18s ease, border-color .18s ease, background-color .18s ease; }
+    .source-link strong { text-wrap: balance; }
+    .footer { align-items: center; }
+    :where(a, button, input, select, summary):focus-visible { outline: none; box-shadow: var(--focus-ring); }
+    .filter:active, .nav-action:active, .save:active, .signup button:active { transform: scale(.98); }
+    @media (max-width: 800px) {
+      .edition-rail { font-size: 8px; letter-spacing: .8px; }
+      .hero { padding-top: 38px; }
+      .feature-art { min-height: 300px; }
+      .story-grid { gap: 36px 20px; }
+    }
+    @media (max-width: 560px) {
+      html { scroll-padding-top: 76px; }
+      .shell { padding-inline: 18px; }
+      .edition-rail { min-height: 26px; justify-content: center; }
+      .edition-rail span:nth-child(2) { display: none; }
+      .edition-rail span:last-child { font-size: 8px; }
+      .nav { min-height: 62px; }
+      .nav-action { min-height: 40px; }
+      .hero { padding-block: 31px 22px; }
+      h1 { font-size: clamp(3.25rem, 13vw, 4.4rem); }
+      .demo-banner { align-items: flex-start; }
+      .main-feature { min-height: 0; }
+      .feature-copy { min-height: 268px; }
+      .feature-copy h2 { max-width: 13ch; }
+      .feature-art { min-height: 0; aspect-ratio: 16 / 10; }
+      .section-head { margin-top: 52px; }
+      .story-grid { gap: 33px; }
+      .story-visual { aspect-ratio: 16 / 10; }
+      .filter { min-height: 42px; }
+      .weekly-intro { padding: 29px 25px; }
+      .weekly-list { padding-inline: 18px; }
+      .weekly-item { min-height: 68px; }
+      .source-grid { gap: 9px; }
+      .source-link { min-height: 78px; padding: 12px; }
+      .footer { align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+    /* Direção de jornal independente: tipografia de publicação, sem estética de produto de IA. */
+    :root {
+      --paper: #f7f5ee; --ink: #1c1c19; --muted: #706e67; --line: #d9d6cd; --card: #fffdf7;
+      --accent: #762b35; --lavender: #e9e3d9; --peach: #eee4d5; --blue: #e2e4df;
+      --focus-ring: 0 0 0 3px #f7f5ee, 0 0 0 5px #762b35;
+    }
+    body { background: var(--paper); }
+    .topbar { background: #f7f5eef2; border-bottom-color: var(--line); }
+    .edition-rail { color: #79766e; }
+    .edition-rail span:first-child { color: var(--ink); }
+    .brand { gap: 7px; font-family: var(--serif); font-size: 19px; font-weight: 600; letter-spacing: -.7px; }
+    .brand-mark { display: none; }
+    .brand-edition { align-self: center; border-left: 1px solid var(--line); margin-left: 4px; padding-left: 10px; color: var(--accent); font: 700 10px/1 var(--sans); letter-spacing: 1.1px; }
+    .nav-action:hover { background: var(--accent); border-color: var(--accent); }
+    .hero { padding-block: 34px 22px; }
+    .hero-top { margin-bottom: 12px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); align-items: end; gap: clamp(24px, 5vw, 72px); max-width: 1100px; }
+    h1 { max-width: 780px; font-family: var(--serif); font-size: clamp(48px, 6.1vw, 78px); line-height: .96; font-weight: 500; letter-spacing: -.065em; }
+    h1 .serif { color: var(--accent); font-style: normal; font-weight: 500; letter-spacing: inherit; }
+    .hero-aside { margin: 0 0 4px; max-width: 410px; }
+    .hero-aside p { margin-bottom: 16px; font-size: 15px; line-height: 1.7; }
+    .text-link { border-color: var(--accent); }
+    .text-link span { color: var(--accent); }
+    .demo-banner { margin-top: 23px; border-left-color: var(--accent); background: #ece8df; color: #5f5c55; }
+    .edition-ticker { height: auto; min-height: 44px; margin: 0 0 22px; border-color: var(--line); }
+    .ticker-track { width: 100%; justify-content: flex-start; gap: clamp(16px, 2.5vw, 34px); animation: none; }
+    .ticker-track span { color: #5c5a54; font-size: 9px; letter-spacing: 1.1px; }
+    .ticker-track span:first-child { color: var(--accent); font-weight: 750; }
+    .ticker-track i { display: none; }
+    .main-feature { min-height: 390px; grid-template-columns: .92fr 1.08fr; background: #20201d; box-shadow: 0 16px 42px #211c1514; }
+    .feature-copy, .feature-art { min-height: 390px; }
+    .feature-copy { padding: clamp(28px, 4vw, 52px); }
+    .feature-copy h2 { font-family: var(--serif); font-size: clamp(35px, 4vw, 54px); font-weight: 400; letter-spacing: -1.7px; }
+    .feature-copy .eyebrow::before { background: #dfbd68; }
+    .section-head { margin-top: clamp(48px, 6vw, 76px); }
+    .section-head h2 { color: var(--ink); }
+    .filter:hover, .filter.active { border-color: var(--accent); background: var(--accent); }
+    .search input:focus, .region-select:focus { border-color: var(--accent); }
+    .story-grid { gap: clamp(28px, 3.8vw, 48px) clamp(20px, 2.5vw, 34px); }
+    .story h3 { font-weight: 500; }
+    .story-bottom .read-summary, .weekly-num { color: var(--accent); }
+    .save[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); }
+    .weekly { background: #762b35; }
+    .weekly-intro .eyebrow { color: #e4d1a8; }
+    .weekly-intro h2 { font-family: var(--serif); font-weight: 400; }
+    .weekly-list { background: #eee9dd; }
+    .source-link { background: #fbf9f3; }
+    .source-link:hover { border-color: var(--accent); }
+    .toast { background: var(--accent); }
+    @media (max-width: 800px) {
+      .hero-grid { grid-template-columns: minmax(0, 1.1fr) minmax(220px, .9fr); gap: 24px; }
+      h1 { font-size: clamp(46px, 7vw, 62px); }
+      .main-feature, .feature-copy, .feature-art { min-height: 350px; }
+    }
+    @media (max-width: 560px) {
+      .brand { font-size: 16px; }
+      .hero { padding-block: 28px 18px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 14px; }
+      h1 { max-width: 12ch; font-size: clamp(43px, 12vw, 56px); line-height: 1; }
+      .hero-aside { max-width: 100%; margin: 0; }
+      .hero-aside p { font-size: 14px; }
+      .edition-ticker { min-height: 42px; margin-bottom: 18px; }
+      .ticker-track { justify-content: space-between; flex-wrap: wrap; gap: 8px 12px; padding-block: 9px; }
+      .ticker-track span { font-size: 8px; letter-spacing: .7px; }
+      .main-feature { grid-template-columns: 1fr; min-height: 0; }
+      .feature-copy { min-height: 270px; }
+      .feature-art { min-height: 0; aspect-ratio: 16 / 10; }
+      .section-head { margin-top: 48px; }
+    }
   </style>
   <link rel="stylesheet" href="./assets/news-art.css" />
 </head>
 <body>
   <header class="topbar">
+    <div class="shell edition-rail" aria-label="Identificação da edição"><span>Jornal de inteligência artificial</span><span>Brasil · Mundo · Pesquisa</span></div>
     <div class="shell nav">
-      <a class="brand" href="#top" aria-label="Estado da Arte I. A., início"><span class="brand-mark" aria-hidden="true">EA</span> Estado da Arte <span style="font-weight:450">I. A.</span></a>
+      <a class="brand" href="#top" aria-label="Estado da Arte I. A., início"><span>Estado da Arte</span><span class="brand-edition">I. A.</span></a>
       <nav class="nav-links" aria-label="Navegação principal">
-        <a href="#hoje">Hoje</a><a href="#semana">Semana</a><a href="#github">GitHub</a><a href="#fontes">Fontes</a>
+        <a href="#hoje">Hoje</a><a href="#semana">Semana</a><a href="#semana">GitHub</a><a href="#fontes">Fontes</a>
       </nav>
       <button class="nav-action" type="button" id="refresh-feed">Atualizar agora ↻</button>
     </div>
   </header>
   <main id="top" class="shell">
     <section class="hero" aria-labelledby="headline">
-      <div class="hero-top"><div class="eyebrow"><span class="live-dot"></span> Radar global de inteligência artificial</div><div class="date-line" id="today-date"></div></div>
+      <div class="hero-top"><div class="eyebrow"><span class="live-dot"></span> Jornal independente · Inteligência artificial</div><div class="date-line" id="today-date"></div></div>
       <div class="hero-grid">
-        <h1 id="headline">O futuro da IA<br /><span class="serif">está em pauta.</span></h1>
+        <h1 id="headline">Inteligência artificial,<br /><span class="serif">com contexto.</span></h1>
         <div class="hero-aside">
-          <p>Um jornal diário sobre o que muda no Brasil e no mundo: descobertas, ferramentas e criações de inteligência artificial, sempre com contexto e fonte original.</p>
-          <a class="text-link" href="#hoje">Acompanhar as notícias <span aria-hidden="true">↘</span></a>
+          <p>Notícias, pesquisa e criações que ajudam a entender o que está mudando — em português e com ligação para a fonte original.</p>
+          <a class="text-link" href="#hoje">Ler a edição de hoje <span aria-hidden="true">↘</span></a>
         </div>
       </div>
       <div class="demo-banner" id="feed-status" role="status" aria-live="polite"><strong>Conectando às fontes…</strong> Preparando as notícias mais recentes.</div>
     </section>
 
-    <div class="edition-ticker" aria-label="Temas acompanhados pelo jornal"><div class="ticker-track" aria-hidden="true">
-      <span>Pesquisa</span><i>✳</i><span>Novas ferramentas</span><i>✳</i><span>Código aberto</span><i>✳</i><span>Criações</span><i>✳</i><span>Negócios</span><i>✳</i><span>Política e sociedade</span><i>✳</i>
-      <span>Pesquisa</span><i>✳</i><span>Novas ferramentas</span><i>✳</i><span>Código aberto</span><i>✳</i><span>Criações</span><i>✳</i><span>Negócios</span><i>✳</i><span>Política e sociedade</span><i>✳</i>
+    <div class="edition-ticker" aria-label="Temas acompanhados pelo jornal"><div class="ticker-track">
+      <span>Cadernos</span><span>Pesquisa</span><span>Novas ferramentas</span><span>Código aberto</span><span>Criações</span><span>Negócios</span><span>Política e sociedade</span>
     </div></div>
 
     <section class="main-feature" aria-label="Notícia em destaque">
@@ -417,7 +590,7 @@
       <div class="source-grid" id="source-list"><div class="feed-message">Carregando a lista de fontes…</div></div>
     </section>
   </main>
-  <footer class="shell footer" id="sobre"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">EA</span> Estado da Arte <span style="font-weight:450">I. A.</span></a><span>Um jornal independente sobre inteligência artificial.</span><div class="footer-links"><a href="#hoje">Instagram</a><a href="#hoje">Contato</a><a href="#hoje">Sobre o projeto</a></div><span>© <span id="year"></span> Estado da Arte I. A.</span></footer>
+  <footer class="shell footer" id="sobre"><a class="brand" href="#top"><span>Estado da Arte</span><span class="brand-edition">I. A.</span></a><span>Um jornal independente sobre inteligência artificial.</span><div class="footer-links"><a href="#hoje">Instagram</a><a href="#hoje">Contato</a><a href="#hoje">Sobre o projeto</a></div><span>© <span id="year"></span> Estado da Arte I. A.</span></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="./assets/news-art.js"></script>
   <script>
@@ -425,6 +598,7 @@
     const state = { period: 'week', category: 'all', region: 'all', query: '', items: [] };
     const regionLabels = { brasil: 'Brasil', eua: 'Estados Unidos', europa: 'Europa', china: 'China', github: 'GitHub' };
     const categoryLabels = { noticias: 'Notícias', ferramentas: 'Ferramentas', pesquisa: 'Pesquisa', mercado: 'Mercado', politica: 'Política', infraestrutura: 'Infraestrutura', hardware: 'Hardware', desenvolvimento: 'Desenvolvimento', seguranca: 'Segurança', segurança: 'Segurança', 'open source': 'Código aberto', repositório: 'Repositório', typescript: 'Linguagem TypeScript', javascript: 'Linguagem JavaScript', python: 'Linguagem Python', rust: 'Linguagem Rust', java: 'Linguagem Java', go: 'Linguagem Go' };
+    const aiCoverage = /intelig[eê]ncia artificial|\bIA\b|generative\s+AI|\bAI\b|OpenAI|Anthropic|ChatGPT|Gemini|Claude|Copilot|LLM|modelo de linguagem|agente de IA/i;
     const storyGrid = document.querySelector('#story-grid');
     const githubList = document.querySelector('#github-list');
     const feedStatus = document.querySelector('#feed-status');
@@ -433,6 +607,20 @@
     document.querySelector('#year').textContent = new Date().getFullYear();
     function regionName(region) { return regionLabels[region] || 'Internacional'; }
     function categoryName(category) { return categoryLabels[(category || '').toLocaleLowerCase('pt-BR')] || category || 'Notícias'; }
+    function uniqueNewsItems(items) {
+      const seen = new Set();
+      return items.filter(item => {
+        if (item.kind === 'repository') return true;
+        if (!aiCoverage.test(`${item.title || ''} ${item.summary || ''}`)) return false;
+        const source = (item.source || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const title = (item.title || '').replace(new RegExp(`\\s*(?:[-–|:])\\s*${source}$`, 'i'), '')
+          .toLowerCase().replace(/[^a-z0-9áàâãéêíóôõúç]+/gi, ' ').trim();
+        const key = `${item.region || ''}:${title}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
     function imageTile(item, index) {
       const text = `${item.title || ''} ${item.category || ''} ${item.summary || ''}`.toLocaleLowerCase('pt-BR');
       if (/chip|hardware|sil[ií]cio|semicondutor/.test(text)) return 2;
@@ -488,7 +676,7 @@
     function savedIds() { try { return JSON.parse(localStorage.getItem('estadoArteSaved') || '[]'); } catch { return []; } }
     function renderStories() {
       storyGrid.replaceChildren();
-      const items = state.items.filter(matches);
+      const items = uniqueNewsItems(state.items.filter(matches));
       if (!items.length) {
         const message = state.period === 'day' && state.category === 'all' && state.region === 'all' && !state.query
           ? 'Nenhuma matéria jornalística sobre IA foi publicada hoje. Veja as notícias mais recentes desta semana.'
@@ -566,7 +754,8 @@
       document.querySelector('#github-trending-link').href = `https://github.com/trending?since=${suffix}`;
     }
     function renderFeature() {
-      const lead = state.items.find(item => item.translationStatus === 'native' && item.kind !== 'repository')
+      const stories = uniqueNewsItems(state.items.filter(item => item.kind !== 'repository'));
+      const lead = stories.find(item => item.translationStatus === 'native')
         || state.items.find(item => item.id === 'cnn-precos-ia-20260925')
         || state.items.find(item => item.kind !== 'repository');
       if (!lead) return;
@@ -606,7 +795,7 @@
         const unavailable = total - live;
         const untranslated = Number(data.untranslatedCount) || 0;
         feedStatus.innerHTML = `<strong>Atualizado ${new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Fortaleza' }).format(new Date(data.generatedAt))}:</strong> ${live} de ${total} feeds responderam${unavailable ? `; ${unavailable} indisponível(is) agora` : ''}. ${untranslated ? `${untranslated} matérias ficaram de fora até haver tradução para português. ` : ''}Conteúdo vinculado às fontes originais.`;
-        const newsCount = state.items.filter(item => item.kind !== 'repository').length;
+        const newsCount = uniqueNewsItems(state.items.filter(item => item.kind !== 'repository')).length;
         const projectCount = state.items.filter(item => item.kind === 'repository').length;
         document.querySelector('#last-updated').textContent = `${newsCount} notícias${projectCount ? ` · ${projectCount} projetos do GitHub` : ''} · atualização automática a cada 30 minutos.`;
       } catch {
@@ -619,7 +808,7 @@
           const total = (data.sourceStatus || []).length;
           const sourceSummary = total ? `${live} de ${total} fontes responderam` : 'seleção editorial disponível';
           feedStatus.innerHTML = `<strong>Jornal atualizado${generatedAt ? ` em ${generatedAt}` : ''}:</strong> ${sourceSummary}. A publicação é renovada automaticamente a cada 30 minutos; as matérias levam à fonte original.`;
-          const newsCount = state.items.filter(item => item.kind !== 'repository').length;
+          const newsCount = uniqueNewsItems(state.items.filter(item => item.kind !== 'repository')).length;
           const projectCount = state.items.filter(item => item.kind === 'repository').length;
           document.querySelector('#last-updated').textContent = `${newsCount} notícias${projectCount ? ` · ${projectCount} projetos do GitHub` : ''} · atualização automática a cada 30 minutos.`;
         } catch {
