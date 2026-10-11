@@ -1,4 +1,5 @@
 import http from 'node:http';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -155,7 +156,7 @@ async function fetchFeed(feed) {
   const xml = await response.text();
   if (!xml.includes('<rss') && !xml.includes('<feed') && !xml.includes('<rdf:RDF')) throw new Error('Resposta não parece RSS/Atom');
   const items = rssEntries(xml).filter(looksLikeAi).slice(0, Number(SOURCES.maxPerFeed || 18)).map((item) => ({
-    id: `${feed.id}-${Buffer.from(normalizedUrl(item.link)).toString('base64url').slice(0, 16)}`,
+    id: `${feed.id}-${createHash('sha256').update(normalizedUrl(item.link)).digest('hex').slice(0, 20)}`,
     title: item.title,
     summary: item.summary ? truncateText(plainText(item.summary), 650) : '',
     source: item.feedSource || feed.name,
