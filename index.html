@@ -181,6 +181,14 @@
           ? 'Nenhuma matéria jornalística sobre IA foi publicada hoje. Veja as notícias mais recentes desta semana.'
           : 'Nenhuma notícia encontrada nesse período ou com esses filtros.';
         storyGrid.append(make('div', 'feed-message', message));
+        if (state.query || state.category !== 'all' || state.region !== 'all') {
+          const reset = make('button', 'text-link', 'Limpar filtros e busca →'); reset.type = 'button';
+          reset.addEventListener('click', () => {
+            state.query = ''; state.category = 'all'; state.region = 'all'; search.value = ''; document.querySelector('#region-filter').value = 'all';
+            document.querySelectorAll('.filter').forEach(button => button.classList.toggle('active', button.dataset.filter === 'all')); renderStories();
+          }); storyGrid.append(reset);
+        }
+
         if (state.period === 'day' && state.category === 'all' && state.region === 'all' && !state.query) {
           const weekButton = make('button', 'text-link', 'Ver notícias da semana →');
           weekButton.type = 'button';
@@ -257,6 +265,7 @@
       const lead = stories.find(item => item.translationStatus === 'native' && !/cupom|oferta|mercado livre|menor pre[çc]o|OFF|sem juros/i.test(item.title))
         || state.items.find(item => item.id === 'cnn-precos-ia-20260925')
         || state.items.find(item => item.kind !== 'repository');
+      document.querySelector('.feature-stage').hidden = !lead;
       if (!lead) return;
       document.querySelector('#feature-kicker').textContent = `${categoryName(lead.category)} · ${regionName(lead.region)}`;
       document.querySelector('#feature-title').textContent = lead.title;
