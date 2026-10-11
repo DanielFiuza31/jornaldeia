@@ -308,7 +308,7 @@
         document.querySelector('#last-updated').textContent = `${newsCount} notícias${projectCount ? ` · ${projectCount} projetos do GitHub` : ''} · atualização automática a cada 30 minutos.`;
       } catch {
         try {
-          const response = await fetch('./news.json'); if (!response.ok) throw new Error('semente indisponível');
+          const response = await fetch('./news.json', { cache: 'no-store' }); if (!response.ok) throw new Error('semente indisponível');
           const data = await response.json();
           state.items = data.periods?.[state.period] || data.items || [];
           const generatedAt = data.generatedAt ? new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'America/Fortaleza' }).format(new Date(data.generatedAt)) : '';

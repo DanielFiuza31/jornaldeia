@@ -121,7 +121,7 @@
         } catch {}
       }
       try {
-        const response = await fetch('./news.json');
+        const response = await fetch('./news.json', { cache: 'no-store' });
         if (response.ok) {
           const data = await response.json();
           const items = data.items || [...(data.periods?.day || []), ...(data.periods?.week || [])];
